@@ -46,6 +46,8 @@ class FlavorFragment : Fragment() {
         val fragmentBinding = FragmentFlavorBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,11 +62,16 @@ class FlavorFragment : Fragment() {
         }
     }
 
+
     /**
      * Navigate to the next screen to choose pickup date.
      */
     fun goToNextScreen() {
         findNavController().navigate(R.id.action_flavorFragment_to_pickupFragment)
+    }
+    fun cancelOrder() {
+        sharedViewModel.resetOrder()
+        findNavController().navigate(R.id.action_flavorFragment_to_startFragment)
     }
 
     /**
@@ -75,4 +82,5 @@ class FlavorFragment : Fragment() {
         super.onDestroyView()
         binding = null
     }
+
 }
