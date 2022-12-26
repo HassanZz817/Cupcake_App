@@ -42,7 +42,7 @@ class FlavorFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val fragmentBinding = FragmentFlavorBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
@@ -52,7 +52,10 @@ class FlavorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
+
             viewModel = sharedViewModel
+            flavorFragment = this@FlavorFragment
             nextButton.setOnClickListener { goToNextScreen() }
         }
     }

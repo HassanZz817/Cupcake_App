@@ -23,6 +23,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.cupcake.databinding.FragmentStartBinding
@@ -49,13 +50,8 @@ class StartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding?.startFragment = this
 
-        binding?.apply {
-            // Set up the button click listeners
-            orderOneCupcake.setOnClickListener { orderCupcake(1) }
-            orderSixCupcakes.setOnClickListener { orderCupcake(6) }
-            orderTwelveCupcakes.setOnClickListener { orderCupcake(12) }
-        }
     }
 
     /**
@@ -64,7 +60,7 @@ class StartFragment : Fragment() {
     fun orderCupcake(quantity: Int) {
     sharedViewModel.setQuantity(quantity)
         if (sharedViewModel.hasNoFlavorSet()) {
-            sharedViewModel.setFlavor(getString(R.string.flavor))
+            sharedViewModel.setFlavor(getString(R.string.vanilla))
 
         }
         findNavController().navigate(R.id.action_startFragment_to_flavorFragment)

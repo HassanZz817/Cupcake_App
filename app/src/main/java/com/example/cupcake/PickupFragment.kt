@@ -52,7 +52,10 @@ class PickupFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
             viewModel = sharedViewModel
+            pickupFragment = this@PickupFragment
+
             nextButton.setOnClickListener { goToNextScreen() }
         }
     }
